@@ -74,4 +74,7 @@ Plugins/**/Intermediate/*
 DerivedDataCache/*
 
 # Unreal Engine 기본 콘텐츠 폴더 무시
-StarterContent/
+StarterContent/*
+Content/*
+
+

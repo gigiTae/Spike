@@ -7,6 +7,8 @@
 #include "InputAction.h"
 #include "SpikeCharacter.generated.h"
 
+class UCameraComponent;
+
 UCLASS()
 class SPIKE_API ASpikeCharacter : public ACharacter
 {
@@ -26,19 +28,26 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void NotifyControllerChanged() override;
 
 	// Input Section
 protected:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<class UInputMappingContext> InputMappingContext;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> JumpAction;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<UInputAction> RotateAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> LookAction;
 
 private:
 	void Move(const FInputActionValue& Value);
+
+	void Look(const FInputActionValue& Value);
+
+	// Camera Section
+protected:
+	TObjectPtr<UCameraComponent> FirstPersonCameraComponent;
 
 };
