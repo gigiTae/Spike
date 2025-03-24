@@ -8,6 +8,7 @@
 #include "SpikeCharacter.generated.h"
 
 class UCameraComponent;
+class USpringArmComponent;
 
 UCLASS()
 class SPIKE_API ASpikeCharacter : public ACharacter
@@ -47,7 +48,11 @@ private:
 	void Look(const FInputActionValue& Value);
 
 	// Camera Section
-protected:
-	TObjectPtr<UCameraComponent> FirstPersonCameraComponent;
+private:
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UCameraComponent> FollowCamera;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<USpringArmComponent> CameraBoom;
 };
