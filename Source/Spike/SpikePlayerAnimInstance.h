@@ -29,7 +29,10 @@ protected:
 	FVector Velocity;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character")
-	float GroundSpeed;
+	float FowardSpeed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character")
+	float RightSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character")
 	float MovingThreshould;

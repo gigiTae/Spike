@@ -20,8 +20,10 @@ ASpikeCharacter::ASpikeCharacter()
 	bUseControllerRotationRoll = false;
 
 	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f); // ...at this rotation rate
+
+	GetCharacterMovement()->bUseControllerDesiredRotation = false; // Character moves in the direction of input...	
+	GetCharacterMovement()->bOrientRotationToMovement = false; // Character moves in the direction of input...	
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 1000.0f, 0.0f); // ...at this rotation rate
 
 	// Note: For faster iteration times these variables, and many more, can be tweaked in the Character Blueprint
 	// instead of recompiling to adjust them
@@ -33,7 +35,7 @@ ASpikeCharacter::ASpikeCharacter()
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
 	
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.f);
-	GetCapsuleComponent()->SetHiddenInGame(false, true);
+	//GetCapsuleComponent()->SetHiddenInGame(false, true);
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -85,7 +87,6 @@ void ASpikeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	if (EnhancedInput)
 	{
-	
 		EnhancedInput->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
 		EnhancedInput->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 		EnhancedInput->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ASpikeCharacter::Move);

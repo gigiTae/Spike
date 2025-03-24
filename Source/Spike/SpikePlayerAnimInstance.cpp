@@ -30,8 +30,15 @@ void USpikePlayerAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 	if (Movement)
 	{
+		const FTransform& Transform = Owner->GetRootComponent()->GetComponentTransform();
+		const FVector Forward = Transform.GetUnitAxis(EAxis::X);
+		const FVector Right = Transform.GetUnitAxis(EAxis::Y);
+
 		Velocity = Movement->Velocity;
-		GroundSpeed = Velocity.Size2D();
+		FowardSpeed = Forward.Dot(Velocity);
+		RightSpeed = Right.Dot(Velocity);
+		UE_LOG(LogTemp, Log, TEXT("Foward %f  Right%f"), FowardSpeed, RightSpeed);
+		float GroundSpeed = Velocity.Size2D();
 		bIsIdle = GroundSpeed < MovingThreshould;
 		bIsFalling = Movement->IsFalling();
 		bIsJumping = bIsJumping & (Velocity.Z > JumpingThreshould);

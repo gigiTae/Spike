@@ -17,4 +17,6 @@ class SPIKE_API ASpikePlayerController : public APlayerController
 public:
 	ASpikePlayerController();
 
+	virtual void SpawnPlayerCameraManager() override;
+
 };
