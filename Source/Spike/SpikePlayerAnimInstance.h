@@ -35,6 +35,9 @@ protected:
 	float RightSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character")
+	float PitchAngle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character")
 	float MovingThreshould;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character")

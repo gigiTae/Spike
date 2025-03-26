@@ -35,9 +35,16 @@ void USpikePlayerAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		const FVector Right = Transform.GetUnitAxis(EAxis::Y);
 
 		Velocity = Movement->Velocity;
+
+		APlayerController* PlayerController = Cast<APlayerController>(Owner->GetController());
+		if (PlayerController)
+		{
+			PitchAngle = PlayerController->PlayerCameraManager->GetCameraRotation().Pitch;
+		}
+
 		FowardSpeed = Forward.Dot(Velocity);
 		RightSpeed = Right.Dot(Velocity);
-		UE_LOG(LogTemp, Log, TEXT("Foward %f  Right%f"), FowardSpeed, RightSpeed);
+
 		float GroundSpeed = Velocity.Size2D();
 		bIsIdle = GroundSpeed < MovingThreshould;
 		bIsFalling = Movement->IsFalling();

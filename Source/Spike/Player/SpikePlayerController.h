@@ -7,12 +7,15 @@
 #include "SpikePlayerController.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class SPIKE_API ASpikePlayerController : public APlayerController
 {
 	GENERATED_BODY()
+
+protected:
+	virtual void BeginPlay() override;
 
 public:
 	ASpikePlayerController();

@@ -33,7 +33,6 @@ ASpikeCharacter::ASpikeCharacter()
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
-	
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.f);
 	//GetCapsuleComponent()->SetHiddenInGame(false, true);
 
@@ -41,7 +40,6 @@ ASpikeCharacter::ASpikeCharacter()
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = 400.0f; // The camera follows at this distance behind the character	
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
-
 
 	// Follow Camera Setting
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
